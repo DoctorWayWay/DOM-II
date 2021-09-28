@@ -4,16 +4,18 @@ EVENT CHECKLIST:
 [x] mouseover
 [x] mouseleave
 [x] load
-[] scroll
-[] 
-[]
-[]
-[]
-[]
+[x] scroll
+[x] keydown
+[x] keyup
+[] dbclick
+[] select
+[] copy
 */
 
-// Selecting the Navigation Anchors
+// QUERY SELECTORS
 const navAnchorsSelector = document.querySelectorAll("nav.nav a.nav-link");
+const funBusImageSelector = document.querySelector("header.intro img");
+const headerTwoSelector = document.querySelector("header.intro h2");
 
 // Disabling default operation on Navigation Anchors AND adding "mouseover" event
 navAnchorsSelector.forEach((link) => {
@@ -34,9 +36,25 @@ navAnchorsSelector.forEach((link) => {
 });
 
 // When window is loaded, alert the user with a welcome!
-window.addEventListener("load", function () {
+window.addEventListener("load", function (event) {
   window.alert("Welcome to Fun Bus!");
+  event.stopPropagation();
 });
 
-// Fun Bus Image (First Image/Top Image) Selector
-const funBusImgSelector = document.querySelector("header.intro img");
+// Header Section h2 background color turns "red"
+document.addEventListener("scroll", function (event) {
+  headerTwoSelector.style.backgroundColor = "red";
+  event.stopPropagation();
+});
+
+// Styling Bus Image
+funBusImageSelector.style.transition = "3s";
+document.addEventListener("keydown", function (event) {
+  funBusImageSelector.style.border = "20px solid cyan";
+  event.stopPropagation();
+});
+
+document.addEventListener("keyup", function (event) {
+  funBusImageSelector.style.border = "";
+  event.stopPropagation();
+});
