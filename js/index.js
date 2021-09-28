@@ -1,3 +1,17 @@
+/*
+EVENT CHECKLIST:
+[x] click
+[x] mouseover
+[x] mouseleave
+[x] load
+[] scroll
+[] 
+[]
+[]
+[]
+[]
+*/
+
 // Selecting the Navigation Anchors
 const navAnchorsSelector = document.querySelectorAll("nav.nav a.nav-link");
 
@@ -10,10 +24,19 @@ navAnchorsSelector.forEach((link) => {
   link.addEventListener("mouseover", function (event) {
     if (event.target.style.color !== "red") {
       event.target.style.color = "red";
-    } else {
-      event.target.style.color = "#212529";
+    }
+  });
+  link.addEventListener("mouseleave", function (event) {
+    if (event.target.style.color === "red") {
+      event.target.style.color = "black";
     }
   });
 });
 
-//
+// When window is loaded, alert the user with a welcome!
+window.addEventListener("load", function () {
+  window.alert("Welcome to Fun Bus!");
+});
+
+// Fun Bus Image (First Image/Top Image) Selector
+const funBusImgSelector = document.querySelector("header.intro img");
