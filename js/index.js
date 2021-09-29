@@ -1,15 +1,17 @@
 /*
 EVENT CHECKLIST:
-[x] click
-[x] mouseover
-[x] mouseleave
-[x] load
-[x] scroll
-[x] keydown
-[x] keyup
-[x] dbclick
-[] select
-[] copy
+[x] 1 click
+[x] 2 mouseover
+[x] 3 mouseleave
+[x] 4 load
+[x] 5 scroll
+[x] 6 keydown
+[x] 7 keyup
+[x] 8 dbclick
+[x] 9 cut
+[x] 10 copy
+[x] 11 pointerenter
+[ ] 12 pointerleave
 */
 
 // QUERY SELECTORS
@@ -19,7 +21,8 @@ const bodySelector = document.querySelector("body");
 const navAnchorsSelector = document.querySelectorAll("nav.nav a.nav-link");
 const funBusImageSelector = document.querySelector("header.intro img");
 const headerTwoSelector = document.querySelector("header.intro h2");
-const paragraphsSelector = document.querySelectorAll("div.text-content");
+const paragraphsSelector = document.querySelectorAll("p");
+
 // Disabling default operation on Navigation Anchors AND adding "mouseover" & "mouseleave" event
 navAnchorsSelector.forEach((link) => {
   link.addEventListener("click", function (event) {
@@ -29,11 +32,13 @@ navAnchorsSelector.forEach((link) => {
   link.addEventListener("mouseover", function (event) {
     if (event.target.style.color !== "red") {
       event.target.style.color = "red";
+      event.preventDefault();
     }
   });
   link.addEventListener("mouseleave", function (event) {
     if (event.target.style.color === "red") {
       event.target.style.color = "black";
+      event.preventDefault();
     }
   });
 });
@@ -68,8 +73,29 @@ function turnNavPurple() {
 }
 bodySelector.addEventListener("dblclick", turnNavPurple);
 
-// Copying h1 alerts user of with "You have copied 'Fun Bus'"
+// Copying h1 alerts user that "Stop trying to copy me!"
 headerOneSelector.addEventListener("copy", (event) => {
   window.alert("Stop trying to copy me!");
   event.preventDefault();
+});
+
+// Cutting h1 alerts user that "You can't cut me!"
+headerOneSelector.addEventListener("cut", (event) => {
+  window.alert("You can't cut me!");
+  event.preventDefault();
+});
+
+// When the user's pointer enters a paragraph, change the paragraphs color to red.
+// When pointer leaves, turn paragraphs color to black.
+// Transitions will take 1s
+paragraphsSelector.forEach((paragraph) => {
+  paragraph.style.transition = "1s";
+  paragraph.addEventListener("pointerenter", (event) => {
+    event.target.style.color = "red";
+    event.preventDefault();
+  });
+  paragraph.addEventListener("pointerleave", (event) => {
+    event.target.style.color = "black";
+    event.preventDefault();
+  });
 });
