@@ -20,7 +20,7 @@ const navAnchorsSelector = document.querySelectorAll("nav.nav a.nav-link");
 const funBusImageSelector = document.querySelector("header.intro img");
 const headerTwoSelector = document.querySelector("header.intro h2");
 const paragraphsSelector = document.querySelectorAll("div.text-content");
-// Disabling default operation on Navigation Anchors AND adding "mouseover" event
+// Disabling default operation on Navigation Anchors AND adding "mouseover" & "mouseleave" event
 navAnchorsSelector.forEach((link) => {
   link.addEventListener("click", function (event) {
     event.preventDefault();
@@ -68,4 +68,8 @@ function turnNavPurple() {
 }
 bodySelector.addEventListener("dblclick", turnNavPurple);
 
-//
+// Copying h1 alerts user of with "You have copied 'Fun Bus'"
+headerOneSelector.addEventListener("copy", (event) => {
+  window.alert("Stop trying to copy me!");
+  event.preventDefault();
+});
