@@ -7,16 +7,19 @@ EVENT CHECKLIST:
 [x] scroll
 [x] keydown
 [x] keyup
-[] dbclick
+[x] dbclick
 [] select
 [] copy
 */
 
 // QUERY SELECTORS
+const headerOneSelector = document.querySelector("h1.logo-heading");
+const navSelector = document.querySelector("nav.nav");
+const bodySelector = document.querySelector("body");
 const navAnchorsSelector = document.querySelectorAll("nav.nav a.nav-link");
 const funBusImageSelector = document.querySelector("header.intro img");
 const headerTwoSelector = document.querySelector("header.intro h2");
-
+const paragraphsSelector = document.querySelectorAll("div.text-content");
 // Disabling default operation on Navigation Anchors AND adding "mouseover" event
 navAnchorsSelector.forEach((link) => {
   link.addEventListener("click", function (event) {
@@ -47,7 +50,7 @@ document.addEventListener("scroll", function (event) {
   event.stopPropagation();
 });
 
-// Styling Bus Image
+// Styling Bus Image w/ "keydown" and "keyup"
 funBusImageSelector.style.transition = "3s";
 document.addEventListener("keydown", function (event) {
   funBusImageSelector.style.border = "20px solid cyan";
@@ -58,3 +61,11 @@ document.addEventListener("keyup", function (event) {
   funBusImageSelector.style.border = "";
   event.stopPropagation();
 });
+
+// Double clicking the body turns the nav bar purple
+function turnNavPurple() {
+  navSelector.style.backgroundColor = "purple";
+}
+bodySelector.addEventListener("dblclick", turnNavPurple);
+
+//
