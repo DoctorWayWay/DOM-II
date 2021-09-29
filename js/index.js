@@ -11,7 +11,7 @@ EVENT CHECKLIST:
 [x] 9 cut
 [x] 10 copy
 [x] 11 pointerenter
-[ ] 12 pointerleave
+[x] 12 pointerleave
 */
 
 // QUERY SELECTORS
@@ -32,13 +32,11 @@ navAnchorsSelector.forEach((link) => {
   link.addEventListener("mouseover", function (event) {
     if (event.target.style.color !== "red") {
       event.target.style.color = "red";
-      event.preventDefault();
     }
   });
   link.addEventListener("mouseleave", function (event) {
     if (event.target.style.color === "red") {
       event.target.style.color = "black";
-      event.preventDefault();
     }
   });
 });
@@ -76,13 +74,13 @@ bodySelector.addEventListener("dblclick", turnNavPurple);
 // Copying h1 alerts user that "Stop trying to copy me!"
 headerOneSelector.addEventListener("copy", (event) => {
   window.alert("Stop trying to copy me!");
-  event.preventDefault();
+  event.stopPropagation();
 });
 
 // Cutting h1 alerts user that "You can't cut me!"
 headerOneSelector.addEventListener("cut", (event) => {
   window.alert("You can't cut me!");
-  event.preventDefault();
+  event.stopPropagation();
 });
 
 // When the user's pointer enters a paragraph, change the paragraphs color to red.
@@ -92,10 +90,8 @@ paragraphsSelector.forEach((paragraph) => {
   paragraph.style.transition = "1s";
   paragraph.addEventListener("pointerenter", (event) => {
     event.target.style.color = "red";
-    event.preventDefault();
   });
   paragraph.addEventListener("pointerleave", (event) => {
     event.target.style.color = "black";
-    event.preventDefault();
   });
 });
